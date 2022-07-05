@@ -28,12 +28,12 @@
 
   <div class="field">
     <%= form.label :priority %>
-    <%= form.text_field :priority %>
+    <%= form.select :priority, [["最優先", "最優先"], ["高", "高"], ["中", "中"], ["低", "低"]], include_blank: "選択" %>
   </div>
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.select :status, [["未着手", "未着手"], ["進行中", "進行中"], ["済", "済"]], include_blank: "選択" %>
   </div>
 
   <div class="actions">
