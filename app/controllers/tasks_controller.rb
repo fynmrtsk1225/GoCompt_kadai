@@ -3,7 +3,11 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    if params[:sort_deadline]
+      @tasks = Task.latest
+    else
+      @tasks = Task.all.order(created_at: :desc)
+    end
   end
 
   # GET /tasks/1

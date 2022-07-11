@@ -31,6 +31,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_0).to have_content "2"
       end
     end
+    context 'Deadlineを押した時終了期限順の降順で並んでいる場合' do
+      it '終了期限の遅いものが一番上に表示される' do
+        visit tasks_path
+        click_on 'Deadline'
+        task = all('tbody tr')
+        task_0 = task[0]
+        expect(task_0).to have_content "2022-07-30"
+      end
+    end
   end
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
