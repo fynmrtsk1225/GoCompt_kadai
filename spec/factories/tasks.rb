@@ -3,7 +3,7 @@ FactoryBot.define do
     title { 'test_title1' }
     content { 'test_content' }
     deadline { '2022-07-30' }
-    priority { 'test_priority' }
+    priority { '最優先' }
     status { '未着手' }
   end
 
@@ -11,7 +11,7 @@ FactoryBot.define do
     title { 'test_title2' }
     content { 'test_content2' }
     deadline { '2022-03-07' }
-    priority { 'test_priority2' }
+    priority { '高' }
     status { '未着手' }
   end
 
@@ -19,7 +19,7 @@ FactoryBot.define do
     title { 'test_title1' }
     content { 'test_content3' }
     deadline { '2022-07-30' }
-    priority { 'test_priority3' }
+    priority { '低' }
     status { '済' }
   end
 end

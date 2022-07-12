@@ -41,6 +41,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_0).to have_content "2022-07-30"
       end
     end
+    context 'Priorityを押した時優先順位の降順で並んでいる場合' do
+      it '優先度の高いものが一番上に表示される' do
+        visit tasks_path
+        click_on 'Priority'
+        task = all('tbody tr')
+        task_0 = task[0]
+        expect(task_0).to have_content "最優先"
+      end
+    end
   end
   describe '検索機能' do
     let!(:task) { FactoryBot.create(:task, title: 'title1') }
