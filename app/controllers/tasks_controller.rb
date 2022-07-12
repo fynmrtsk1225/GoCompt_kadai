@@ -9,11 +9,11 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(created_at: :desc)
     end
     
-    @tasks = @tasks.where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?
-    @tasks = @tasks.where('title LIKE ?', "%#{params[:status]}%") if params[:status].present?
-
-    # @tasks = Task.title_like
-    # @tasks = Task.status_like
+    # @tasks = @tasks.where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?
+    # @tasks = @tasks.where('title LIKE ?', "%#{params[:status]}%") if params[:status].present?
+    
+    @tasks = Task.like_title(params)
+    @tasks = @tasks.like_status(params)
 
 
   end

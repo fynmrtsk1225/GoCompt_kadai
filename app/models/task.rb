@@ -4,6 +4,6 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :status, presence: true
   scope :latest, -> {order(deadline: :desc)}
-  # scope :title_like, -> {where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?}
-  # scope :status_like, -> {where('status LIKE ?', "%#{params[:status]}%") if params[:status].present?}
+  scope :like_title, -> (params) do where('title LIKE ?', "%#{params[:title]}%") if params[:title].present? end
+  scope :like_status, -> (params) do where('status LIKE ?', "%#{params[:status]}%") if params[:status].present? end
 end
