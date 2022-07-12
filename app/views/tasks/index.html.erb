@@ -2,11 +2,9 @@
 
 <h1>Tasks</h1>
 
-<%= link_to 'All', tasks_path %>
-
 <%= form_with url: tasks_path, method: :get, local: true do |form| %>
-  <%= form.text_field :title %>
-  <%= form.select :status, [["未着手", "未着手"], ["進行中", "進行中"], ["済", "済"]], include_blank: "選択" %>
+  <a>Title <%= form.text_field :title %></a>
+  <a>Status <%= form.select :status, [["未着手", "未着手"], ["進行中", "進行中"], ["済", "済"]], include_blank: "選択" %></a>
   <%= form.submit 'Search', name: nil %>
 <% end %>
 
@@ -44,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_task_path %> <%= link_to 'All', tasks_path %>
