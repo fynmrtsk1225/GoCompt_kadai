@@ -3,19 +3,19 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(5)
 
     if params[:sort_deadline]
-      @tasks = Task.latest
+      @tasks = Task.latest.page(params[:page]).per(5)
     elsif params[:sort_priority]
-      @tasks = Task.top_priority
+      @tasks = Task.top_priority.page(params[:page]).per(5)
     end
     
     title = params[:title]
     status = params[:status]
     
-    @tasks = Task.like_title(title) if title.present?
-    @tasks = @tasks.like_status(status) if status.present?
+    @tasks = Task.like_title(title).page(params[:page]).per(5) if title.present?
+    @tasks = @tasks.like_status(status).page(params[:page]).per(5) if status.present?
 
   end
 
