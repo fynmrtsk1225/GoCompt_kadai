@@ -8,9 +8,12 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: :desc)
     end
-        
-    @tasks = Task.like_title(params)
-    @tasks = @tasks.like_status(params)
+    
+    title = params[:title]
+    status = params[:status]
+    
+    @tasks = Task.like_title(title)
+    @tasks = @tasks.like_status(status)
 
 
   end
