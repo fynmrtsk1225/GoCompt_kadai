@@ -55,7 +55,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     let!(:task) { FactoryBot.create(:task, title: 'title1') }
     let!(:task2) { FactoryBot.create(:task2, title: 'title2') }
     let!(:task3) { FactoryBot.create(:task3, title: 'title1') }
-    context '検索をした場合' do
+    context '検索をした場合' do 
       it 'タイトルで検索できる' do
         visit tasks_path
         fill_in 'title', with: 'title1'
