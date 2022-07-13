@@ -21,6 +21,8 @@ gem 'turbolinks', '~> 5'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'kaminari'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -34,6 +36,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem 'rexml'
+  gem 'spring-commands-rspec'
+  gem 'faker'
+  gem 'launchy'
 end
 
 group :development do
