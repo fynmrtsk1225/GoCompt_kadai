@@ -36,6 +36,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem 'rexml'
+  gem 'spring-commands-rspec'
+  gem 'faker'
+  gem 'launchy'
 end
 
 group :development do

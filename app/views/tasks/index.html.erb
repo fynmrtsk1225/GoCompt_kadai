@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="bg-info">Tasks</h1>
 
 <div class="sub-body">
+
+<p id="notice"><%= notice %></p>
 
 <%= form_with url: tasks_path, method: :get, local: true do |form| %>
   <a>Title <%= form.text_field :title %></a>
