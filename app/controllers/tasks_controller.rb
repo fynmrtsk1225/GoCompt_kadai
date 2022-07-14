@@ -3,18 +3,18 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(5)
+    @tasks = current_user.tasks.all.order(created_at: :desc).page(params[:page]).per(5)
 
     if params[:sort_deadline]
-      @tasks = Task.latest.page(params[:page]).per(5)
+      @tasks = current_user.tasks.latest.page(params[:page]).per(5)
     elsif params[:sort_priority]
-      @tasks = Task.top_priority.page(params[:page]).per(5)
+      @tasks = current_user.tasks.top_priority.page(params[:page]).per(5)
     end
     
     title = params[:title]
     status = params[:status]
     
-    @tasks = Task.like_title(title).page(params[:page]).per(5) if title.present?
+    @tasks = current_user.tasks.like_title(title).page(params[:page]).per(5) if title.present?
     @tasks = @tasks.like_status(status).page(params[:page]).per(5) if status.present?
 
   end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     if @task.save
       redirect_to tasks_path, notice: 'Task was successfully created.'
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
