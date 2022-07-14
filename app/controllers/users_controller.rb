@@ -6,11 +6,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tasks = current_user.tasks
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id]=@user.id
       redirect_to user_path(@user.id)
     else
       render :new
