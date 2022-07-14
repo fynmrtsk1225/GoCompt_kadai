@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :login_already
+  
   # GET /tasks
   def index
     @tasks = current_user.tasks.all.order(created_at: :desc).page(params[:page]).per(5)
