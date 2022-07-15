@@ -9,6 +9,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @tasks = @user.tasks
   end
 
   def create
