@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   skip_before_action :login_already
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.preload(:tasks).all.order(created_at: :desc)
   end
 
   def new
