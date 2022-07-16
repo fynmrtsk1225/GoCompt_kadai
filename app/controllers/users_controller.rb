@@ -25,9 +25,9 @@ class UsersController < ApplicationController
   private
 
   def ensure_user
-    @users = current_user.id
+    @users = current_user
     @user = User.find(params[:id])
-    redirect_to tasks_path if @user.id != @users
+    redirect_to tasks_path if @user.id != @users.id && @users.admin != true
   end
 
   def user_params
