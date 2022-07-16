@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   skip_before_action :login_already
+  before_action :admin_user
 
   def index
     @users = User.all.order(created_at: :desc)
@@ -43,6 +44,11 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+
+  def admin_user
+    @users = current_user
+    redirect_to tasks_path, notice: 'Only the administrator can access it.' if @users.admin != true
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
