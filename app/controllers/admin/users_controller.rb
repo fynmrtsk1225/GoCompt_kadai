@@ -40,8 +40,15 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+    redirect_to admin_users_path, notice: 'User was successfully destroyed.'
   end
+
+  def change
+    @user = User.find(params[:id])
+    @user.toggle!(:admin)
+    redirect_to admin_users_path
+  end
+  
 
   private
 
@@ -51,7 +58,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
   
 end
