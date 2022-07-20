@@ -1,8 +1,13 @@
-<h1 class="bg-info">Tasks</h1>
+<h1 class="bg-info">My Page</h1>
 
 <div class="sub-body">
 
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %>
+
+<table>
+  <strong>Name </strong>
+  <%= @user.name %>
+</table>
 
 <%= form_with url: tasks_path, method: :get, local: true do |form| %>
   <a>Title <%= form.text_field :title %></a>
@@ -44,10 +49,8 @@
   </tbody>
 </table>
 
-<%= paginate @tasks %>
-
 <br>
 
-<%= link_to 'New Task', new_task_path %> <%= link_to 'All', tasks_path %>
+<%= link_to 'All', tasks_path %> <%= link_to 'Back', admin_users_path %> 
 
 </div>

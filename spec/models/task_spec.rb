@@ -1,5 +1,6 @@
 require 'rails_helper'
 describe 'タスクモデル機能', type: :model do
+  let!(:user) { FactoryBot.create(:user) }
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションにひっかる' do
@@ -8,7 +9,8 @@ describe 'タスクモデル機能', type: :model do
           content: 'miss_content',
           deadline: 'miss_deadline',
           priority: '最優先',
-          status: '未着手')
+          status: '未着手',
+          user_id: '0')
         expect(task).not_to be_valid
       end
     end
@@ -19,8 +21,8 @@ describe 'タスクモデル機能', type: :model do
           content: '',
           deadline: 'miss_deadline',
           priority: '最優先',
-          status: '未着手'
-        )
+          status: '未着手',
+          user_id: '0')
         expect(task).not_to be_valid
       end
     end
@@ -31,15 +33,15 @@ describe 'タスクモデル機能', type: :model do
           content: 'hit_content',
           deadline: 'hit_deadline',
           priority: '最優先',
-          status: '未着手'
-        )
+          status: '未着手',
+          user_id: '0')
         expect(task).to be_valid
       end
     end
   end
   describe '検索機能' do
-    let!(:task) { FactoryBot.create(:task, title: 'task', status: '未着手') }
-    let!(:task2) { FactoryBot.create(:task2, title: 'sample', status: '済') }
+    let!(:task) { FactoryBot.create(:task, title: 'task', status: '未着手', user: user) }
+    let!(:task2) { FactoryBot.create(:task2, title: 'sample', status: '済',user: user) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         expect(Task.like_title('task')).to include(task)
