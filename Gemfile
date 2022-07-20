@@ -22,6 +22,7 @@ gem 'turbolinks', '~> 5'
 # Use Active Model has_secure_password
 gem 'bcrypt'
 gem 'kaminari'
+gem 'pry-rails'
 
 
 # Use Active Storage variant
