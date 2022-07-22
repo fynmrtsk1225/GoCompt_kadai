@@ -48,6 +48,10 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1
   def update
+    unless params[:task][:label_ids]
+      @task.label_on_tasks.delete_all
+    end
+    
     if @task.update(task_params)
       redirect_to tasks_path, notice: 'Task was successfully updated.'
     else
