@@ -14,14 +14,16 @@ class TasksController < ApplicationController
     
     title = params[:title]
     status = params[:status]
+    label = params[:label_id]
     
     @tasks = current_user.tasks.like_title(title).page(params[:page]).per(5) if title.present?
     @tasks = @tasks.like_status(status).page(params[:page]).per(5) if status.present?
-
+    @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   # GET /tasks/1
   def show
+    # @tasks = @task.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   # GET /tasks/new
@@ -67,6 +69,6 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:title, :content, :deadline, :created_at, :priority, :status)
+      params.require(:task).permit(:title, :content, :deadline, :created_at, :priority, :status, { label_ids: [] })
     end
 end

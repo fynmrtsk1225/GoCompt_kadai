@@ -9,3 +9,7 @@ User.create([
   {id: 0, name: 'Daiki', email: 'daiki@exam.com', password: 'daikidaiki', password_confirmation: 'daikidaiki', admin: true},
   {id: 1, name: 'Natsuko', email: 'natsuko@exam.com', password: 'natsukonatsuko', password_confirmation: 'natsukonatsuko'}
   ])
+
+  5.times do |i|
+    Label.create!(name: "sample#{i + 1}")
+  end
